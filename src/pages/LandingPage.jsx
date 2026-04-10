@@ -1,15 +1,19 @@
+
 import Footer from "../components/Layout/Footer";
 import NavBar from "../components/Layout/NavBar";
 
 function LandingPage() {
   return (
     <div className="bg-black text-white overflow-x-hidden">
-      <NavBar />
+      <div className="m-4 py-2 mt-2 sticky top-2 z-50">
+        <NavBar />
+      </div>
+      
       {/* HERO */}
       <div
         className="relative rounded-lg mx-6 my-2 md:mx-10 lg:mx-16 py-6 bg-cover bg-center"
         style={{
-          backgroundImage: `url('/src/assets/images/skies.png')`,
+          backgroundImage: `url('/src/assets/images/hero.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           border: "2px solid white",
@@ -19,7 +23,7 @@ function LandingPage() {
         <div className="absolute inset-0 bg-black/50 rounded-lg"></div>
 
         <div className="relative z-10 px-6 md:px-12 lg:px-20 py-6 max-w-[650px]">
-          <h1 className="text-5xl md:text-6xl">
+          <h1 className="font-style text-5xl md:text-6xl">
             Make a <br /> living from <br /> Web3
           </h1>
 

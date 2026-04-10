@@ -32,4 +32,11 @@
   @media (max-width: 1024px) {
     font-size: 16px;
   }
+
+
+.font-style {
+  font-family: Sekuya
+Static
+;
+}
 }

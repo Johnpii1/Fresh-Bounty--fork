@@ -1,3 +1,4 @@
+
 import Connect from "../Connect";
 import SignUp from "../SignUp";
 import { useAccountEffect } from "wagmi";
@@ -36,7 +37,7 @@ function NavBar() {
   }, [address, navigate]);
 
   return (
-    <div className="flex justify-between items-center p-2 md:p-6 bg-[#050505] h-[55px] border border-black/40 w-full sticky top-2 z-50">
+    <div className="flex justify-between items-center p-2 md:p-6 bg-[#050505] h-[55px] border border-black/40 w-full">
       {/* LOGO */}
       <div>
         {pathname !== "/" ? (
