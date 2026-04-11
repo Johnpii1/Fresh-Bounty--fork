@@ -1,4 +1,4 @@
-
+import HappyBounty from "../../assets/images/HappyBounty.png";
 import Connect from "../Connect";
 import SignUp from "../SignUp";
 import { useAccountEffect } from "wagmi";
@@ -37,21 +37,18 @@ function NavBar() {
   }, [address, navigate]);
 
   return (
-    <div className="flex justify-between items-center p-2 md:p-6 bg-[#050505] h-[55px] border border-black/40 w-full">
+    <div className="sticky top-0 z-50">
+    <div className="flex justify-between items-center p-2 md:p-6 bg-white h-[55px] border border-black/40 w-full">
       {/* LOGO */}
       <div>
         {pathname !== "/" ? (
           <Link to="/dashboard">
-            <img
-              className="h-[100px] mt-2.5 object-contain"
-              src="/src/assets/images/HappyBounty.png"
-              alt="Happy Bounty"
-            />
+        <img src= {HappyBounty} alt="" />
           </Link>
         ) : (
           <img
             className="h-[100px] mt-2.5 object-contain"
-            src="/src/assets/images/HappyBounty.png"
+            src={HappyBounty}
             alt="Happy Bounty"
           />
         )}
@@ -105,6 +102,7 @@ function NavBar() {
         {/* CONNECT BUTTON */}
         {pathname !== "/" ? <Connect /> : <SignUp />}
       </div>
+    </div>
     </div>
   );
 }
