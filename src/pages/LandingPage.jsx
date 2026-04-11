@@ -5,7 +5,7 @@ import NavBar from "../components/Layout/NavBar";
 function LandingPage() {
   return (
     <div className="bg-black text-white overflow-x-hidden ">
-      <div className="m-4 py-2 mt-2">
+      <div className=" py-2 mt-2 w-full">
         <NavBar />
       </div>
       

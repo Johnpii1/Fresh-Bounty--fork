@@ -38,7 +38,7 @@ function NavBar() {
 
   return (
     <div className="fixed w-full top-0 z-50">
-    <div className="flex justify-between items-center p-6  bg-black h-[55px] border border-black/40 w-full">
+    <div className="flex justify-between items-center gap-6 px-4  bg-black h-[55px] border border-black/40">
       {/* LOGO */}
       <div>
         {pathname !== "/" ? (
@@ -47,7 +47,7 @@ function NavBar() {
           </Link>
         ) : (
           <img
-            className="h-[100px] mt-2.5 object-contain"
+            className="h-[100px] mt-4 object-contain"
             src={HappyBounty}
             alt="Happy Bounty"
           />
@@ -55,13 +55,13 @@ function NavBar() {
       </div>
 
       {/* RIGHT SECTION */}
-      <div className="flex flex-row items-center gap-2 font-semibold text-white">
+      <div className="flex flex-row items-center gap-4 font-semibold text-white">
         <div
           className="relative"
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
         >
-          <button className="hover:text-gray-300 transition flex items-center gap-1">
+          <button className="hover:text-gray-300 transition flex items-center gap-2">
             Resources
             <span
               className={`transform transition-transform ${isOpen ? "rotate-180" : ""}`}
