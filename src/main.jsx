@@ -10,7 +10,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
- <div className="font-style">
+ <div className="">
  <WagmiProvider config={config}>
     <QueryClientProvider client={queryClient}>
       <RainbowKitProvider theme={darkTheme()}>
