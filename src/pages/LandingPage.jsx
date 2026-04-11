@@ -1,4 +1,4 @@
-
+import hero from "../assets/images/hero.jpg";
 import Footer from "../components/Layout/Footer";
 import NavBar from "../components/Layout/NavBar";
 
@@ -13,7 +13,7 @@ function LandingPage() {
       <div
         className="relative rounded-lg mx-6 my-2 md:mx-10 lg:mx-16 py-6 bg-cover bg-center"
         style={{
-          backgroundImage: `url('/src/assets/images/hero.jpg')`,
+         backgroundImage: `url(${hero})` ,
           backgroundSize: "cover",
           backgroundPosition: "center",
           border: "2px solid white",
