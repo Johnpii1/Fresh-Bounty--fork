@@ -4,19 +4,19 @@ import NavBar from "../components/Layout/NavBar";
 
 function LandingPage() {
   return (
-    <div className="bg-black text-white overflow-x-hidden">
-      <div className="m-4 py-2 mt-2 sticky top-2 z-50">
+    <div className="bg-black text-white overflow-x-hidden ">
+      <div className="m-4 py-2 mt-2">
         <NavBar />
       </div>
       
       {/* HERO */}
       <div
-        className="relative rounded-lg mx-6 my-2 md:mx-10 lg:mx-16 py-6 bg-cover bg-center"
+        className="relative rounded-lg mx-6 my-2 md:mx-10 lg:mx-16 py-6 bg-cover bg-center mt-14"
         style={{
          backgroundImage: `url(${hero})` ,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          border: "2px solid white",
+          border: "1px solid white",
         }}
       >
         {/* Overlay for better text readability */}

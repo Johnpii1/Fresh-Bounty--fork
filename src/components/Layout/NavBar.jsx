@@ -37,8 +37,8 @@ function NavBar() {
   }, [address, navigate]);
 
   return (
-    <div className="sticky top-0 z-50">
-    <div className="flex justify-between items-center p-2 md:p-6 bg-white h-[55px] border border-black/40 w-full">
+    <div className="fixed w-full top-0 z-50">
+    <div className="flex justify-between items-center p-6  bg-black h-[55px] border border-black/40 w-full">
       {/* LOGO */}
       <div>
         {pathname !== "/" ? (
