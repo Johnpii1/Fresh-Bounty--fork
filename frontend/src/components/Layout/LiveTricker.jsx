@@ -1,11 +1,15 @@
 function LiveTricker() {
   return (
     <div className="w-full">
-      {/* Ticker */}
-      <div className="ticker mt-8 ">
-        <div className="ticker-text text-green-400 font-semibold">
-          <p>🚀 Welcome to Happy Bounty • 💰 Earn Rewards • 🧩 Complete Tasks • ⚡
-          Instant Payouts • 🎯 New Bounties Added Daily • </p>
+      <div className="ticker mt-8">
+        <div className="ticker-track text-green-400 font-semibold">
+          <div className="ticker-content">
+            🚀 Welcome to Happy Bounty • 💰 Earn Rewards • 🧩 Complete Tasks • ⚡ Instant Payouts • 🎯 New Bounties Added Daily •
+          </div>
+
+          <div className="ticker-content">
+            🚀 Welcome to Happy Bounty • 💰 Earn Rewards • 🧩 Complete Tasks • ⚡ Instant Payouts • 🎯 New Bounties Added Daily •
+          </div>
         </div>
       </div>
 
@@ -14,21 +18,26 @@ function LiveTricker() {
           overflow: hidden;
           white-space: nowrap;
           background: #111827;
-          padding: 10px;
+          padding: 10px 0;
         }
 
-        .ticker-text {
-          display: inline-block;
-          padding-left: 100%;
-          animation: scroll 12s linear infinite;
+        .ticker-track {
+          display: flex;
+          width: max-content;
+          animation: scroll 15s linear infinite;
+        }
+
+        .ticker-content {
+          white-space: nowrap;
+          padding-right: 50px;
         }
 
         @keyframes scroll {
-          0% {
-            transform: translateX(0%);
+          from {
+            transform: translateX(0);
           }
-          100% {
-            transform: translateX(-100%);
+          to {
+            transform: translateX(-50%);
           }
         }
       `}</style>
