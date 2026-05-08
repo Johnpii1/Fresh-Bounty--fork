@@ -116,15 +116,15 @@ function LandingPage() {
         <div className="absolute inset-0 bg-black/60 rounded-lg"></div>
         <div className="relative z-10 px-6 md:px-12 lg:px-20 py-12 max-w-[650px]">
           <div className="space-y-2">
-  <h1 className="typing-line delay-1 text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+  <h1 className="typing-line soft-pink text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
     Make a
   </h1>
 
-  <h1 className="typing-line delay-2 text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+  <h1 className="typing-line delay-2 soft-pink text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
     living from
   </h1>
 
-  <h1 className="typing-line delay-3 text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+  <h1 className="typing-line delay-3 soft-pink text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
     Web3
   </h1>
 </div>
@@ -138,16 +138,18 @@ function LandingPage() {
     animation: typing 1.5s steps(20, end) forwards;
   }
 
-  .delay-1 {
-    animation-delay: 0s;
+  .soft-pink {
+    animation:
+      typing 1.5s steps(20, end) forwards,
+      softGlow 3s ease-in-out infinite alternate;
   }
 
   .delay-2 {
-    animation-delay: 1.5s;
+    animation-delay: 1s, 1s;
   }
 
   .delay-3 {
-    animation-delay: 3s;
+    animation-delay: 2s, 2s;
   }
 
   @keyframes typing {
@@ -157,6 +159,16 @@ function LandingPage() {
 
     to {
       width: 100%;
+    }
+  }
+
+  @keyframes softGlow {
+    from {
+      text-shadow: 0 0 5px rgba(255, 26, 198, 0.15);
+    }
+
+    to {
+      text-shadow: 0 0 12px rgba(255, 26, 198, 0.85);
     }
   }
 `}</style>
