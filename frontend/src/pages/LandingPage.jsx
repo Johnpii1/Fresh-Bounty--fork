@@ -115,9 +115,51 @@ function LandingPage() {
       >
         <div className="absolute inset-0 bg-black/60 rounded-lg"></div>
         <div className="relative z-10 px-6 md:px-12 lg:px-20 py-12 max-w-[650px]">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            Make a <br /> living from <br /> Web3
-          </h1>
+          <div className="space-y-2">
+  <h1 className="typing-line delay-1 text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+    Make a
+  </h1>
+
+  <h1 className="typing-line delay-2 text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+    living from
+  </h1>
+
+  <h1 className="typing-line delay-3 text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+    Web3
+  </h1>
+</div>
+
+<style>{`
+  .typing-line {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+
+    animation: typing 1.5s steps(20, end) forwards;
+  }
+
+  .delay-1 {
+    animation-delay: 0s;
+  }
+
+  .delay-2 {
+    animation-delay: 1.5s;
+  }
+
+  .delay-3 {
+    animation-delay: 3s;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+
+    to {
+      width: 100%;
+    }
+  }
+`}</style>
           <p className="mt-4 text-base text-gray-200">
             Complete quests and earn cryptocurrency, tokens, and digital
             rewards. Post bounties and get quality work done – fully on‑chain.
