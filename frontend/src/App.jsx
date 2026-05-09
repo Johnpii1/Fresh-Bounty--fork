@@ -5,6 +5,8 @@ import Profile from "./pages/Profile";
 import Create from "./pages/Create";
 import BountyDetail from "./pages/BountyDetail";
 import FAQs from "./pages/Faqs";
+import Admin from "./components/Admin";
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           <Route path="create" element={<Create />} />
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/task/:id" element={<BountyDetail />} />
+        <Route path="/admin-224466" element={<Admin />}/>
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>
