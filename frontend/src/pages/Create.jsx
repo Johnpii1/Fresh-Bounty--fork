@@ -400,6 +400,7 @@ function Create() {
                         <option value="Development">Development</option>
                         <option value="Design">Design</option>
                         <option value="Marketing">Marketing</option>
+                        <option value="AI & Machine Learning">AI & Machine Learning</option>
                         <option value="Others">Others</option>
                       </select>
                     </div>
@@ -464,6 +465,8 @@ function Create() {
                         <option value="smart-contract">Smart Contract</option>
                         <option value="frontend">Frontend</option>
                         <option value="backend">Backend</option>
+                        <option value="AI/ML">AI/ML</option>
+                        <option value="ui-ux">Backend</option>
                         <option value="ui-ux">UI/UX</option>
                         <option value="marketing">Marketing</option>
                         <option value="content">Content Creation</option>
