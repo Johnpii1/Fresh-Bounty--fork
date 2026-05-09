@@ -13,6 +13,7 @@ import eth2 from "../assets/images/eth2.png";
 import base from "../assets/images/base.png";
 import usdc1 from "../assets/images/usdc1.png";
 import canton from "../assets/images/canton.png";
+import usdt from "../assets/images/usdt.png";
 // import CoinSpinner from "../components/Layout/crypto";
 
 
@@ -405,9 +406,16 @@ function LandingPage() {
               <div className="w-16 h-16 rounded-full  flex items-center justify-center text-2xl">
                 <img src={usdc1} alt="" className="w-12 spin-slow" />
               </div>
-              <span className="text-sm">USDC / USDT</span>
+              <span className="text-sm">USDT</span>
             </div>
             
+
+ <div className="flex flex-col items-center gap-2">
+              <div className="w-16 h-16 rounded-full  flex items-center justify-center text-2xl">
+                <img src={usdt} alt="" className="w-12 spin-slow" />
+              </div>
+              <span className="text-sm">USDT</span>
+            </div>
 
               <div className="flex flex-col items-center gap-2">
               <div className="w-16 h-16 rounded-full  flex items-center justify-center text-2xl">
