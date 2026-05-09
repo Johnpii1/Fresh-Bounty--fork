@@ -29,7 +29,7 @@ function NavBar() {
 
   return (
     <div className="fixed w-full top-0 z-50">
-      <div className="flex justify-between items-center gap-6 px-4 bg-black h-[60px] border border-black/40">
+      <div className="flex justify-between items-center gap-6 px-1 bg-black h-[60px] border border-black/40 md:px-2">
         {/* LOGO */}
         <div>
           {pathname !== "/dashboard" && pathname !== "/" ? (

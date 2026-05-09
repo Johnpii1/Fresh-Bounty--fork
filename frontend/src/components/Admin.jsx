@@ -1,8 +1,9 @@
-
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="flex h-screen overflow-hidden bg-black text-white">
@@ -46,7 +47,18 @@ export default function Dashboard() {
         {/* TOPBAR */}
         <header className="bg-black border-b border-pink-500/20 p-4 flex justify-between items-center">
 
+          {/* LEFT SIDE */}
           <div className="flex items-center gap-4">
+
+            {/* BACK BUTTON */}
+            <button
+              onClick={() => navigate(-1)}
+              className="px-3 py-1 text-sm border border-pink-500/30 rounded hover:bg-pink-500/10 transition"
+            >
+              ← Back
+            </button>
+
+            {/* MOBILE MENU */}
             <button
               className="md:hidden text-2xl text-pink-500"
               onClick={() => setOpen(true)}
@@ -59,6 +71,7 @@ export default function Dashboard() {
             </h1>
           </div>
 
+          {/* RIGHT SIDE */}
           <div className="flex items-center gap-4">
             <input
               placeholder="Search..."
@@ -97,7 +110,7 @@ export default function Dashboard() {
 
           </div>
 
-          {/* TABLE (FULL HEIGHT SECTION) */}
+          {/* TABLE */}
           <div className="flex flex-col flex-1 bg-black border border-pink-500/20 rounded-xl overflow-hidden">
 
             {/* TABLE HEADER */}
