@@ -6,6 +6,7 @@ import Create from "./pages/Create";
 import BountyDetail from "./pages/BountyDetail";
 import FAQs from "./pages/Faqs";
 import Admin from "./components/Admin";
+import FAQPage from "./pages/Faqs";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="profile" element={<Profile />} />
           <Route path="create" element={<Create />} />
-          <Route path="/faqs" element={<FAQs />} />
+          <Route path="/faqs" element={<FAQPage />} />
           <Route path="/task/:id" element={<BountyDetail />} />
         <Route path="/admin-224466" element={<Admin />}/>
           <Route path="*" element={<h1>404 Not Found</h1>} />
