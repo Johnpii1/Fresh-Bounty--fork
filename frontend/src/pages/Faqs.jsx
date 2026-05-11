@@ -103,11 +103,12 @@ export default function FAQPage() {
           <p className="text-gray-300 mb-6 text-sm sm:text-base md:text-lg">
             Our support team is ready to help you anytime.
           </p>
-
-          <button className="px-8 py-4 rounded-2xl bg-pink-500 hover:bg-pink-400 font-semibold transition duration-300">
-            Contact Support
-          </button>
-
+<Link
+  to="/contact"
+  className="px-8 py-4 rounded-2xl bg-pink-500 hover:bg-pink-400 font-semibold transition duration-300 inline-block text-center"
+>
+  Contact Support
+</Link>
         </div>
 
       </div>

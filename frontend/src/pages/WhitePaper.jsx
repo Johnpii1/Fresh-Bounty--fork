@@ -162,7 +162,7 @@ export default function WhitepaperPage() {
           </p>
 
           <Link
-            to="/bounties"
+            to="/dashboard"
             className="px-6 py-3 rounded-2xl bg-pink-500 hover:bg-pink-400 font-semibold transition"
           >
             Explore Bounties
