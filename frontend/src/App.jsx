@@ -8,6 +8,8 @@ import Admin from "./components/Admin";
 import FAQPage from "./pages/Faqs";
 import WhitepaperPage from "./pages/WhitePaper";
 import ContactUs from "./pages/ContactUs";
+import Setting from "./pages/Setting";
+
 
 
 
@@ -24,6 +26,7 @@ function App() {
           <Route path="/faqs" element={<FAQPage />} />
           <Route path="/whitepaper" element={<WhitepaperPage />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/setting" element={<Setting />} />
           <Route path="/task/:id" element={<BountyDetail />} />
         <Route path="/admin-224466" element={<Admin />}/>
           <Route path="*" element={<h1>404 Not Found</h1>} />

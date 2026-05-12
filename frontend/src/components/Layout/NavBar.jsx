@@ -91,6 +91,13 @@ function NavBar() {
               >
                 Contact
               </Link>
+
+              <Link
+                to="/setting"
+                className="block px-4 py-3 hover:bg-gray-800 hover:pl-6 transition-all border-t border-gray-800"
+              >
+              Setting
+              </Link>
             </div>
           </div>
 
