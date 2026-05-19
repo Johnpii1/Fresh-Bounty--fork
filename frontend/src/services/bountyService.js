@@ -215,6 +215,17 @@ export const getOwnerConfig = ({ chainId }) => ({
   args: [],
 });
 
+// Transfer ownership
+export const prepareTransferOwnershipTx = ({ newOwner, account, chainId }) => {
+  return {
+    address: getBountyContract(chainId),
+    abi: BOUNTY_ABI,
+    functionName: "transferOwnership",
+    args: [newOwner],
+    account,
+  };
+};
+
 export const getUsdcTokenConfig = ({ chainId }) => ({
   address: getBountyContract(chainId),
   abi: BOUNTY_ABI,

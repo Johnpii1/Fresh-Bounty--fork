@@ -4,15 +4,11 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Create from "./pages/Create";
 import BountyDetail from "./pages/BountyDetail";
-import Admin from "./components/Admin";
+import Admin from "./pages/Admin";
 import FAQPage from "./pages/Faqs";
 import WhitepaperPage from "./pages/WhitePaper";
 import ContactUs from "./pages/ContactUs";
 import Setting from "./pages/Setting";
-
-
-
-
 
 function App() {
   return (
@@ -28,7 +24,7 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/task/:id" element={<BountyDetail />} />
-        <Route path="/admin-224466" element={<Admin />}/>
+          <Route path="/admin-224466" element={<Admin />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>

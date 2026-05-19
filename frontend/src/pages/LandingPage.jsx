@@ -16,7 +16,6 @@ import canton from "../assets/images/canton.png";
 import usdt from "../assets/images/usdt.png";
 // import CoinSpinner from "../components/Layout/crypto";
 
-
 function LandingPage() {
   const [featuredBounties, setFeaturedBounties] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -117,20 +116,20 @@ function LandingPage() {
         <div className="absolute inset-0 bg-black/60 rounded-lg"></div>
         <div className="relative z-10 px-6 md:px-12 lg:px-20 py-12 max-w-[650px]">
           <div className="space-y-2">
-  <h1 className="typing-line soft-pink text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
-    Make a
-  </h1>
+            <h1 className="typing-line soft-pink text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+              Make a
+            </h1>
 
-  <h1 className="typing-line delay-2 soft-pink text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
-    living from
-  </h1>
+            <h1 className="typing-line delay-2 soft-pink text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+              living from
+            </h1>
 
-  <h1 className="typing-line delay-3 soft-pink text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
-    Web3
-  </h1>
-</div>
+            <h1 className="typing-line delay-3 soft-pink text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+              Web3
+            </h1>
+          </div>
 
-<style>{`
+          <style>{`
   .typing-line {
     overflow: hidden;
     white-space: nowrap;
@@ -296,13 +295,12 @@ function LandingPage() {
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-  {featuredBounties.map((bounty) => (
-    <BountyCard key={bounty._id} bounty={bounty} />
-  ))}
-</div>
+            {featuredBounties.map((bounty) => (
+              <BountyCard key={bounty._id} bounty={bounty} />
+            ))}
+          </div>
         )}
       </section>
-
 
       {/* TESTIMONIALS SECTION */}
       <section
@@ -374,18 +372,17 @@ function LandingPage() {
 
             <div className="flex flex-col items-center gap-2">
               <div className="w-16 h-16 rounded-full flex items-center justify-center text-2xl">
-               <img className="w-12" src={eth2} alt=""  className="w-12 spin-slow" />
+                <img className="w-12spin-slow" src={eth2} alt="" />
               </div>
               <span className="text-sm">Ethereum</span>
             </div>
-            
+
             <div className="flex flex-col items-center gap-2">
               <div className="w-16 h-16 rounded-full flex items-center justify-center text-2xl">
-                <img src={bnb1} alt=""  className="w-12 spin-slow" />
+                <img src={bnb1} alt="" className="w-12 spin-slow" />
               </div>
               <span className="text-sm">BNB Chain</span>
             </div>
-
 
             <div className="flex flex-col items-center gap-2">
               <div className="w-16 h-16 rounded-full flex items-center justify-center text-2xl">
@@ -408,23 +405,22 @@ function LandingPage() {
               </div>
               <span className="text-sm">USDT</span>
             </div>
-            
 
- <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-col items-center gap-2">
               <div className="w-16 h-16 rounded-full  flex items-center justify-center text-2xl">
                 <img src={usdt} alt="" className="w-12 spin-slow" />
               </div>
               <span className="text-sm">USDT</span>
             </div>
 
-              <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-col items-center gap-2">
               <div className="w-16 h-16 rounded-full  flex items-center justify-center text-2xl">
                 <img src={canton} alt="" className="w-12 spin-slow" />
               </div>
               <span className="text-sm">Canton</span>
             </div>
-<style>
-  {`
+            <style>
+              {`
     @keyframes spinSlow {
       to {
         transform: rotate(360deg);
@@ -435,9 +431,7 @@ function LandingPage() {
       animation: spinSlow 3s linear infinite;
     }
   `}
-</style>
-
-
+            </style>
           </div>
         </div>
       </section>

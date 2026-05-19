@@ -1,104 +1,148 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// You'll need to import your contract address and wagmi hooks (or ethers)
-// Example:
-// import { useAccount, useContractRead, useContractWrite } from "wagmi";
-// import { BOUNTY_ABI } from "../abi";
-// import { CONTRACT_ADDRESS } from "../config";
+import {
+  useAccount,
+  useReadContract,
+  useWriteContract,
+  useWaitForTransactionReceipt,
+} from "wagmi";
+import { parseEther, formatEther } from "viem";
+import {
+  getOwnerConfig,
+  getTotalEthFeesConfig,
+  getTotalUsdcFeesConfig,
+  getFeePercentConfig,
+  prepareWithdrawTx,
+  prepareTransferOwnershipTx,
+} from "../services/bountyService"; // adjust path
+import { useChainId } from "wagmi"; // or get from useAccount
 
 export default function AdminPage() {
   const navigate = useNavigate();
+  const { address: connectedWallet } = useAccount();
+  const chainId = useChainId();
 
-  // ========== STATE (only necessary) ==========
-  const [owner, setOwner] = useState(null);
-  const [totalEthFees, setTotalEthFees] = useState("0");
-  const [totalUsdcFees, setTotalUsdcFees] = useState("0");
-  const [feePercent, setFeePercent] = useState("0");
-  const [isOwner, setIsOwner] = useState(false);
+  // State
   const [withdrawAddress, setWithdrawAddress] = useState("");
-  const [txLoading, setTxLoading] = useState(false);
+  const [txHash, setTxHash] = useState(null);
 
-  // ========== Get connected wallet (wagmi example) ==========
-  // const { address: connectedWallet } = useAccount();
+  // Read: Owner
+  const { data: ownerAddress, refetch: refetchOwner } = useReadContract({
+    ...getOwnerConfig({ chainId }),
+    query: { enabled: !!chainId },
+  });
 
-  // ========== READ CONTRACT DATA (comment – you implement) ==========
-  useEffect(
-    () => {
-      async function fetchAdminData() {
-        try {
-          // 1. Get contract owner
-          // const ownerAddress = await contract.owner();
-          // setOwner(ownerAddress);
-          // 2. Get accumulated fees
-          // const ethFees = await contract.totalEthFees();
-          // const usdcFees = await contract.totalUsdcFees();
-          // setTotalEthFees(ethFees.toString());
-          // setTotalUsdcFees(usdcFees.toString());
-          // 3. Get fee percentage
-          // const fee = await contract.FEE_PERCENT();
-          // setFeePercent(fee.toString());
-          // 4. Check if connected wallet is owner
-          // setIsOwner(connectedWallet?.toLowerCase() === ownerAddress?.toLowerCase());
-        } catch (error) {
-          console.error("Failed to fetch admin data:", error);
-        }
-      }
-      fetchAdminData();
-    },
-    [
-      /* connectedWallet, owner */
-    ],
-  );
+  // Read: Total ETH fees
+  const { data: totalEthFeesRaw } = useReadContract({
+    ...getTotalEthFeesConfig({ chainId }),
+    query: { enabled: !!chainId },
+  });
 
-  // ========== WRITE FUNCTIONS (you implement contract calls) ==========
+  // Read: Total USDC fees
+  const { data: totalUsdcFeesRaw } = useReadContract({
+    ...getTotalUsdcFeesConfig({ chainId }),
+    query: { enabled: !!chainId },
+  });
 
+  // Read: Fee percent
+  const { data: feePercentRaw } = useReadContract({
+    ...getFeePercentConfig({ chainId }),
+    query: { enabled: !!chainId },
+  });
+
+  // Check if connected wallet is owner
+  const isOwner =
+    connectedWallet &&
+    ownerAddress &&
+    connectedWallet.toLowerCase() === ownerAddress.toLowerCase();
+
+  // Write: Withdraw
+  const {
+    writeContract: writeWithdraw,
+    data: withdrawTxHash,
+    isPending: isWithdrawPending,
+  } = useWriteContract();
+  const { isLoading: isWithdrawConfirming } = useWaitForTransactionReceipt({
+    hash: withdrawTxHash,
+  });
+
+  // Write: Transfer ownership
+  const {
+    writeContract: writeTransfer,
+    data: transferTxHash,
+    isPending: isTransferPending,
+  } = useWriteContract();
+  const { isLoading: isTransferConfirming } = useWaitForTransactionReceipt({
+    hash: transferTxHash,
+  });
+
+  // Combined loading state
+  const txLoading =
+    isWithdrawPending ||
+    isWithdrawConfirming ||
+    isTransferPending ||
+    isTransferConfirming;
+
+  // Handle withdraw
   const handleWithdraw = async (tokenType) => {
-    // tokenType: 0 = ETH, 1 = USDC (based on your TokenType enum)
-    setTxLoading(true);
-    try {
-      // await contract.withdraw(tokenType, withdrawAddress);
-      alert(
-        `Withdraw ${tokenType === 0 ? "ETH" : "USDC"} to ${withdrawAddress} – implement contract call`,
-      );
-    } catch (error) {
-      console.error("Withdraw failed:", error);
-    } finally {
-      setTxLoading(false);
-    }
+    if (!withdrawAddress) return;
+    const config = prepareWithdrawTx({
+      tokenType, // 0 = ETH, 1 = USDC
+      recipient: withdrawAddress,
+      account: connectedWallet,
+      chainId,
+    });
+    writeWithdraw(config);
   };
 
+  // Handle transfer ownership
   const handleTransferOwnership = async (newOwnerAddress) => {
     if (!newOwnerAddress) return;
-    setTxLoading(true);
-    try {
-      // await contract.transferOwnership(newOwnerAddress);
-      alert(
-        `Transfer ownership to ${newOwnerAddress} – implement contract call`,
-      );
-    } catch (error) {
-      console.error("Transfer failed:", error);
-    } finally {
-      setTxLoading(false);
-    }
+    const config = prepareTransferOwnershipTx({
+      newOwner: newOwnerAddress,
+      account: connectedWallet,
+      chainId,
+    });
+    writeTransfer(config);
   };
 
-  // ========== ACCESS DENIED IF NOT OWNER ==========
-  // if (connectedWallet && owner && !isOwner) {
-  //   return (
-  //     <div className="flex h-screen items-center justify-center bg-black text-white">
-  //       <div className="text-center">
-  //         <h1 className="text-2xl font-bold text-red-500">Access Denied</h1>
-  //         <p className="mt-2 text-gray-400">Only the contract owner can access this page.</p>
-  //         <button onClick={() => navigate("/")} className="mt-4 px-4 py-2 bg-pink-500 rounded">Go Home</button>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  // Clear tx hash and refetch data after success
+  useEffect(() => {
+    if (withdrawTxHash || transferTxHash) {
+      // Optionally refetch fees and owner after transaction confirms
+      refetchOwner();
+    }
+  }, [withdrawTxHash, transferTxHash]);
 
-  // ========== RENDER ADMIN PANEL ==========
+  // Format fee values
+  const totalEthFees = totalEthFeesRaw ? formatEther(totalEthFeesRaw) : "0";
+  const totalUsdcFees = totalUsdcFeesRaw
+    ? (Number(totalUsdcFeesRaw) / 1e6).toString()
+    : "0"; // USDC has 6 decimals
+  const feePercent = feePercentRaw ? feePercentRaw.toString() : "0";
+
+  // Access denied if not owner and we have both addresses
+  if (connectedWallet && ownerAddress && !isOwner) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-black text-white">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-red-500">Access Denied</h1>
+          <p className="mt-2 text-gray-400">
+            Only the contract owner can access this page.
+          </p>
+          <button
+            onClick={() => navigate("/")}
+            className="mt-4 px-4 py-2 bg-pink-500 rounded"
+          >
+            Go Home
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-black text-white p-6">
-      {/* Header with back button */}
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={() => navigate(-1)}
@@ -107,7 +151,7 @@ export default function AdminPage() {
           ← Back
         </button>
         <h1 className="text-2xl font-bold text-pink-500">Admin Panel</h1>
-        <div className="w-20" /> {/* spacer */}
+        <div className="w-20" />
       </div>
 
       {/* Contract Info Cards */}
@@ -115,8 +159,13 @@ export default function AdminPage() {
         <div className="bg-black border border-pink-500/20 p-4 rounded-xl">
           <h3 className="text-gray-400 text-sm">Contract Owner</h3>
           <p className="text-pink-400 font-mono text-sm break-all">
-            {owner || "Loading..."}
+            {ownerAddress || "Loading..."}
           </p>
+          {connectedWallet && (
+            <p className="text-xs text-gray-500 mt-1">
+              You: {connectedWallet.slice(0, 6)}...{connectedWallet.slice(-4)}
+            </p>
+          )}
         </div>
         <div className="bg-black border border-pink-500/20 p-4 rounded-xl">
           <h3 className="text-gray-400 text-sm">Fee Percentage</h3>
@@ -204,7 +253,7 @@ export default function AdminPage() {
         </p>
       </div>
 
-      {/* Loading overlay (optional) */}
+      {/* Loading overlay */}
       {txLoading && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-black border border-pink-500 p-6 rounded-xl">
