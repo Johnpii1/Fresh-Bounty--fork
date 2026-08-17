@@ -2,7 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const { connectToDb } = require("./config/db");
+const { connectDB } = require("./config/db");
 const startStatusUpdateJob = require("./jobs/updateStatusJob");
 
 // Import routes
@@ -11,6 +11,7 @@ const userRoutes = require("./routes/userRoutes");
 const submissionRoutes = require("./routes/submissionRoutes");
 const enrollmentRoutes = require("./routes/enrollmentRoutes");
 const rewardRoutes = require("./routes/rewardRoutes");
+const bountyRoute = require("./routes/bounty.route");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -26,6 +27,7 @@ app.use("/api", userRoutes);
 app.use("/api", submissionRoutes);
 app.use("/api", enrollmentRoutes);
 app.use("/api", rewardRoutes);
+app.use("/api/v1/bounty", bountyRoute);
 
 // Test route
 app.get("/", (req, res) => {
@@ -33,7 +35,7 @@ app.get("/", (req, res) => {
 });
 
 // Connect to DB and start server
-connectToDb(async (err) => {
+connectDB(async (err) => {
   if (err) {
     console.error("Database connection failed:", err);
     process.exit(1);

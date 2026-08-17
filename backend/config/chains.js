@@ -1,8 +1,8 @@
 // chains.js
-import { sepolia, baseSepolia } from "viem/chains";
-import { createPublicClient, http } from "viem";
+const { sepolia, baseSepolia } = require("viem/chains");
+const { createPublicClient, http } = require("viem");
 
-export const CHAINS = {
+ const CHAINS = {
   11155111: {
     chain: sepolia,
     rpc: process.env.SEPOLIA_RPC,
@@ -35,7 +35,7 @@ export const CHAINS = {
   },
 };
 
-export const getPublicClient = (chainId) => {
+ const getPublicClient = (chainId) => {
   const config = CHAINS[chainId];
 
   if (!config) {
@@ -47,3 +47,5 @@ export const getPublicClient = (chainId) => {
     transport: http(config.rpc),
   });
 };
+
+module.exports = {CHAINS, getPublicClient}

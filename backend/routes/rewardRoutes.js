@@ -3,9 +3,9 @@
 const express = require("express");
 const { ObjectId } = require("mongodb");
 const { getDb } = require("../config/db");
-import { formatEther, parseEventLogs } from "viem";
-import { getPublicClient } from "../config/chains";
-import { BOUNTY_ABI } from "../config/abi";
+const { formatEther, parseEventLogs } = require("viem");
+const { getPublicClient } = require("../config/chains")
+const { BOUNTY_ABI } = require("../config/chains")
 
 const router = express.Router();
 
